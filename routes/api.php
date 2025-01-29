@@ -93,7 +93,10 @@ Route::group(['middleware' => "auth:sanctum"], function () {
     Route::apiResource('/trusts', TrustController::class)->only(['store', 'update', 'destroy']);
 
     Route::prefix('/emails')->group(function () {
-        Route::apiResource('/', EmailController::class)->only(['store', 'update', 'destroy']);
+        Route::post('/', [EmailController::class, 'store']);
+        Route::match(['put', 'patch'],'/{email}', [EmailController::class, 'update']);
+        Route::delete('/{email}', [EmailController::class, 'destroy']);
+        Route::post('/{email}', [EmailController::class, 'update']);
         Route::post('/{email}/types/{emailType}', [EmailEmailTypeController::class, 'attach']);
         Route::delete('/{email}/types/{emailType}', [EmailEmailTypeController::class, 'detach']);
     });
