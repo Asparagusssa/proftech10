@@ -15,13 +15,23 @@ class CategoryService
         return Category::with([
             'products' => function ($query) {
                 $query->orderBy('title');
+            },
+            'properties' => function ($query) {
+                $query->orderBy('value');
             }
         ])->orderByRaw('"order" IS NULL, "order" ASC')->orderBy('title')->get();
     }
 
     public function getOne($id)
     {
-        return Category::with('products')->find($id);
+        return Category::with([
+            'products' => function ($query) {
+                $query->orderBy('title');
+            },
+            'properties' => function ($query) {
+                $query->orderBy('value');
+            }
+        ])->find($id);
     }
 
     public function create(Request $request)
