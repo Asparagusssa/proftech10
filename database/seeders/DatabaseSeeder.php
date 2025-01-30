@@ -113,7 +113,10 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@test.com',
         ]);
         EmailType::create([
-            'type' => 'test',
+            'type' => 'feedback',
+        ]);
+        EmailType::create([
+            'type' => 'call',
         ]);
     }
 }
