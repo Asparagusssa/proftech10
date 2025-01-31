@@ -25,13 +25,13 @@ class SeoService
     public function getOne($page_id, $seo_id)
     {
         $page = Page::findOrFail($page_id);
-        return $page->seos->findOrFail($seo_id);
+        return $page->seos()->findOrFail($seo_id);
     }
 
     public function update($page_id, $seo_id, $request)
     {
         $page = Page::findOrFail($page_id);
-        $seo = $page->seos->findOrFail($seo_id);
+        $seo = $page->seos()->findOrFail($seo_id);
         $seo->update($request->validated());
         return $seo;
     }
@@ -39,7 +39,7 @@ class SeoService
     public function delete($page_id, $seo_id): void
     {
         $page = Page::findOrFail($page_id);
-        $seo = $page->seos->findOrFail($seo_id);
+        $seo = $page->seos()->findOrFail($seo_id);
         $seo->delete();
     }
 
