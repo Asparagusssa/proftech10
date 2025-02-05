@@ -18,6 +18,7 @@ use App\Http\Controllers\ProductPropertyController;
 use App\Http\Controllers\ProductRelateController;
 use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\RelateController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SectionTypeController;
 use App\Http\Controllers\SeoController;
 use App\Http\Controllers\SessionController;
@@ -62,6 +63,8 @@ Route::get('/documents/download/{path}', [DocumentController::class, 'download']
 
 Route::post('/support', FeedbackController::class);
 Route::post('/call', CallController::class);
+
+Route::get('/search', [SearchController::class, 'search']);
 
 Route::group(['middleware' => "auth:sanctum"], function () {
     Route::post('/logout', [SessionController::class, 'logout']);
